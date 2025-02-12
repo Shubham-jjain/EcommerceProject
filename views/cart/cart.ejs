@@ -1,0 +1,18 @@
+<% layout('layouts/boilerplate') %> <%-include('../partials/navbar.ejs') %>
+<%-include('../partials/flash.ejs') %>
+
+<ul>
+  <%for(let item of user.cart){%>
+  <div class="col-lg-4 mt-3 d-flex">
+    <div class="shadow card mx-auto" style="width: 25rem">
+      <img src="<%=item.img%>" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h2 class="card-title"><%=item.name%></h2>
+        <h5 class="card-title"><%=item.price%></h5>
+        <p class="card-text"><%=item.desc%></p>
+      </div>
+    </div>
+  </div>
+
+  <%}%>
+</ul>

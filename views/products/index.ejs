@@ -1,0 +1,32 @@
+<% layout('layouts/boilerplate') %>
+<%-include('../partials/navbar.ejs') %>
+<%-include('../partials/flash.ejs') %>
+ 
+ <div class='row'>
+ 
+ 
+    <%for(let item of products){%>
+      <div class="col-lg-4 mt-3">
+             <div class="shadow card mx-auto" style="width: 25rem;">
+                  <img src= "<%=item.img%>" class="card-img-top" alt="...">
+                   <div class="card-body">
+                      <h2 class="card-title"><%=item.name%></h2>
+                       <h5 class="card-title"><%=item.price%></h5>
+                        <p class="card-text"><%=item.desc%></p>
+                        <a href="/products/<%=item.id%>" class="btn btn-primary">View</a>
+                        <!-- <a href="/products/<%=item.id%>/edit" class="btn btn-danger">Edit</a> -->
+                        <%if(currentUser && currentUser.role=== 'seller'){%>
+                         <form class="d-inline-block" action="/products/<%=item.id%>?_method=DELETE" method="POST">
+                           
+                           <button class="btn btn-danger">Delete</button>
+                         
+                         </form>
+                         <%}%>
+
+                    </div>     
+               </div> 
+      </div>  
+    <% } %>  
+ </div>
+ </body>
+</html> 
