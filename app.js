@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -19,11 +19,11 @@ const cartRoutes = require("./routes/cart");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 mongoose
-  .connect("mongodb://127.0.0.1:27017/Shopping-shubham-app")
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Db Connected");
   })
-  .catch(() => {
+  .catch((err) => {
     console.log("Error :-", err);
   });
 

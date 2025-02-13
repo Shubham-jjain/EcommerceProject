@@ -31,12 +31,12 @@ const login =  (req, res) => {
     res.redirect("/products");
   };
 const logout =  (req, res) => {
-    () => {
-      req.logout();
-    };
-    req.flash("success", "Come back soon");
-  
-    res.redirect("/");
+  req.logout((err)=> {
+    if (err) { return next(err); }
+  });
+
+req.flash('success','logged out successfully,Hope to see you soon')
+res.redirect('/');
   };
 
 module.exports = {registerForm,register,loginForm,login,logout};

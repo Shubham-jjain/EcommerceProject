@@ -19,4 +19,14 @@ const addToCart =  async (req, res) => {
   res.redirect("/user/cart");
 };
 
-module.exports = {viewCart,addToCart}
+const removeFromCart = async(req,res)=>{
+  let {idd}=req.params;
+  let userid=req.user._id;
+  let product= await Product.findById(idd)
+  let user=await User.findById(userid)
+  user.cart.pop(product)
+  await user.save()
+  res.redirect('/user/cart');
+};
+
+module.exports = {viewCart,addToCart,removeFromCart}
